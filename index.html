@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity - Your Mental Wellness Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Serenity</h1>
+            <nav>
+                <ul>
+                    <li><a href="#resource-library">Resources</a></li>
+                    <li><a href="#chatbot" id="open-chatbot">Talk to Serenity</a></li>
+                    <li><a href="#quizzes">Quizzes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome to Serenity</h2>
+                <p>Your personal mental wellness companion. Empowering you to thrive, one step at a time.</p>
+                <p>Because your mental health is just as important as your physical health.</p>
+                <a href="#resource-library" class="cta-button">Start Your Journey</a>
+            </div>
+            <div class="hero-image">
+                <img src="ilustration.jpg" alt="Serenity Illustration">
+            </div>
+        </section>
+
+<!-- Resource Library -->
+<section id="resource-library">
+    <h2>Explore Our Resource Library</h2>
+    <div class="search-filter">
+        <input type="text" id="search" placeholder="Search articles, videos, podcasts..." />
+        <select id="filter-category">
+            <option value="all">All Categories</option>
+            <option value="article">Articles</option>
+            <option value="video">Videos</option>
+            <option value="podcast">Podcasts</option>
+        </select>
+    </div>
+    <div id="resource-list" class="resource-grid">
+        <!-- Video Cards will be dynamically populated here by JavaScript -->
+    </div>
+    <div id="pagination">
+        <!-- Pagination buttons will be dynamically populated here -->
+    </div>
+</section>
+
+        <!-- Quizzes Section -->
+        <section id="quizzes">
+            <h2>Assess Your Mental Health</h2>
+            <p class="quiz-subtitle">Discover your mental wellness level with our interactive quizzes. Get personalized recommendations and track your progress over time.</p>
+            
+            <!-- Quiz Cards -->
+            <div class="quiz-container">
+                <!-- Anxiety Quiz Card -->
+                <div class="quiz-card" id="anxiety-quiz-card">
+                    <div class="quiz-icon">😰</div>
+                    <h3>Anxiety Screening</h3>
+                    <p>Take this quiz to assess your anxiety levels and get personalized feedback.</p>
+                    <button id="start-anxiety-quiz" class="cta-button">Start Quiz</button>
+                </div>
+
+                <!-- Depression Quiz Card -->
+                <div class="quiz-card" id="depression-quiz-card">
+                    <div class="quiz-icon">😞</div>
+                    <h3>Depression Screening</h3>
+                    <p>Take this quiz to assess your depression levels and get personalized feedback.</p>
+                    <button id="start-depression-quiz" class="cta-button">Start Quiz</button>
+                </div>
+            </div>
+
+            <!-- Quiz Results Section -->
+            <div id="quiz-results" class="quiz-results">
+                <h3>Your Results</h3>
+                <div class="result-container">
+                    <div class="result-score">
+                        <span id="score">0</span> / 100
+                    </div>
+                    <div class="result-feedback">
+                        <p id="result-text">Based on your answers, here's your mental wellness score and recommendations.</p>
+                        <ul id="recommendations-list"></ul>
+                    </div>
+                    <div class="result-chart">
+                        <canvas id="quiz-chart"></canvas>
+                    </div>
+                </div>
+                <button id="retake-quiz" class="cta-button">Retake Quiz</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chatbot Widget -->
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>Hi, I'm Serenity! 👋</h3>
+            <button id="close-chatbot">X</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <button id="send-message">Send</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Serenity. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
