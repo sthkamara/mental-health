@@ -39,68 +39,115 @@
             </div>
         </section>
 
-<!-- Resource Library -->
-<section id="resource-library">
-    <h2>Explore Our Resource Library</h2>
-    <div class="search-filter">
-        <input type="text" id="search" placeholder="Search articles, videos, podcasts..." />
-        <select id="filter-category">
+<!-- Resource Library Section -->
+<section id="resource-library" class="section resource-library" aria-labelledby="resource-library-heading">
+    <div class="container">
+      <header class="section-header">
+        <h2 id="resource-library-heading" class="section-title">Explore Our Resource Library</h2>
+        <p class="section-subtitle">Discover helpful articles, videos, and podcasts to support your mental health journey</p>
+      </header>
+  
+      <div class="search-filter">
+        <div class="search-wrapper">
+          <label for="search" class="sr-only">Search resources</label>
+          <input 
+            type="search" 
+            id="search" 
+            placeholder="Search articles, videos, podcasts..." 
+            aria-label="Search through resources"
+          />
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        
+        <div class="filter-wrapper">
+          <label for="filter-category" class="sr-only">Filter by category</label>
+          <select id="filter-category" aria-label="Filter resources by category">
             <option value="all">All Categories</option>
             <option value="article">Articles</option>
             <option value="video">Videos</option>
             <option value="podcast">Podcasts</option>
-        </select>
+          </select>
+          <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+  
+      <div id="resource-list" class="resource-grid" aria-live="polite">
+        <!-- Resources will be dynamically populated here by JavaScript -->
+        <div class="resource-loading">
+          <div class="loading-spinner"></div>
+          <p>Loading resources...</p>
+        </div>
+      </div>
+  
+      <div id="pagination" class="pagination" aria-label="Resource pagination">
+        <!-- Pagination will be dynamically populated here -->
+      </div>
+  
+      <div class="no-results" hidden>
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3>No resources found</h3>
+        <p>Try adjusting your search or filters</p>
+        <button class="btn btn-outline reset-filters">Reset filters</button>
+      </div>
     </div>
-    <div id="resource-list" class="resource-grid">
-        <!-- Video Cards will be dynamically populated here by JavaScript -->
-    </div>
-    <div id="pagination">
-        <!-- Pagination buttons will be dynamically populated here -->
-    </div>
-</section>
+  </section> 
 
-        <!-- Quizzes Section -->
-        <section id="quizzes">
-            <h2>Assess Your Mental Health</h2>
-            <p class="quiz-subtitle">Discover your mental wellness level with our interactive quizzes. Get personalized recommendations and track your progress over time.</p>
-            
-            <!-- Quiz Cards -->
-            <div class="quiz-container">
-                <!-- Anxiety Quiz Card -->
-                <div class="quiz-card" id="anxiety-quiz-card">
-                    <div class="quiz-icon">😰</div>
-                    <h3>Anxiety Screening</h3>
-                    <p>Take this quiz to assess your anxiety levels and get personalized feedback.</p>
-                    <button id="start-anxiety-quiz" class="cta-button">Start Quiz</button>
-                </div>
+<!-- Quizzes Section -->
+<section id="quizzes">
+    <h2>Assess Your Mental Health</h2>
+    <p class="quiz-subtitle">Discover your mental wellness level with our interactive quizzes. Get personalized recommendations and track your progress over time.</p>
+    
+    <!-- Quiz Cards -->
+    <div class="quiz-container">
+        <!-- Anxiety Quiz Card -->
+        <div class="quiz-card" id="anxiety-quiz-card">
+            <div class="quiz-icon">😰</div>
+            <h3>Anxiety Screening</h3>
+            <p>Take this quiz to assess your anxiety levels and get personalized feedback.</p>
+            <button id="start-anxiety-quiz" class="cta-button">Start Quiz</button>
+        </div>
 
-                <!-- Depression Quiz Card -->
-                <div class="quiz-card" id="depression-quiz-card">
-                    <div class="quiz-icon">😞</div>
-                    <h3>Depression Screening</h3>
-                    <p>Take this quiz to assess your depression levels and get personalized feedback.</p>
-                    <button id="start-depression-quiz" class="cta-button">Start Quiz</button>
-                </div>
+        <!-- Depression Quiz Card -->
+        <div class="quiz-card" id="depression-quiz-card">
+            <div class="quiz-icon">😞</div>
+            <h3>Depression Screening</h3>
+            <p>Take this quiz to assess your depression levels and get personalized feedback.</p>
+            <button id="start-depression-quiz" class="cta-button">Start Quiz</button>
+        </div>
+
+        <!-- Stress Quiz Card -->
+        <div class="quiz-card" id="stress-quiz-card">
+            <div class="quiz-icon">😩</div>
+            <h3>Stress Screening</h3>
+            <p>Take this quiz to assess your stress levels and get personalized feedback.</p>
+            <button id="start-stress-quiz" class="cta-button">Start Quiz</button>
+        </div>
+    </div>
+
+    <!-- Quiz Results Section -->
+    <div id="quiz-results" class="quiz-results">
+        <h3>Your Results</h3>
+        <div class="result-container">
+            <div class="result-score">
+                <span id="score">0</span> / 100
             </div>
-
-            <!-- Quiz Results Section -->
-            <div id="quiz-results" class="quiz-results">
-                <h3>Your Results</h3>
-                <div class="result-container">
-                    <div class="result-score">
-                        <span id="score">0</span> / 100
-                    </div>
-                    <div class="result-feedback">
-                        <p id="result-text">Based on your answers, here's your mental wellness score and recommendations.</p>
-                        <ul id="recommendations-list"></ul>
-                    </div>
-                    <div class="result-chart">
-                        <canvas id="quiz-chart"></canvas>
-                    </div>
-                </div>
-                <button id="retake-quiz" class="cta-button">Retake Quiz</button>
+            <div class="result-feedback">
+                <p id="result-text">Based on your answers, here's your mental wellness score and recommendations.</p>
+                <ul id="recommendations-list"></ul>
             </div>
-        </section>
+            <div class="result-chart">
+                <canvas id="quiz-chart"></canvas>
+            </div>
+        </div>
+        <button id="retake-quiz" class="cta-button">Retake Quiz</button>
+    </div>
+</section> 
     </main>
 
     <!-- AI Chatbot Widget -->
