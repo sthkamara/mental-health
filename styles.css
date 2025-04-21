@@ -395,6 +395,13 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
+.chatbot-footer {
+    padding: 3px;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.7rem;
+}
+
 /* Footer */
 footer {
     background-color: #6C63FF;
