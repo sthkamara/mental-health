@@ -361,7 +361,7 @@ nav ul li a:hover {
 
 .chatbot-messages div.user {
     text-align: right;
-    color: #6C63FF;
+    color: #000000;
 }
 
 .chatbot-messages div.bot {

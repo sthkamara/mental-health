@@ -137,25 +137,89 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     });
 
-    const sendMessage = () => {
+    // const sendMessage = () => {
+    //     const message = userInput.value.trim();
+    //     if (message !== '') {
+    //         // Display user message
+    //         const userMessageElement = document.createElement('div');
+    //         userMessageElement.classList.add('user');
+    //         userMessageElement.textContent = `You: ${message}`;
+    //         chatbotMessages.appendChild(userMessageElement);
+    //         userInput.value = '';
+    //         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    //         // Simulate bot response (replace with actual API call)
+    //         setTimeout(() => {
+    //             const botMessageElement = document.createElement('div');
+    //             botMessageElement.classList.add('bot');
+    //             botMessageElement.textContent = `Serenity: I'm here to help! How can I assist you further?`;
+    //             chatbotMessages.appendChild(botMessageElement);
+    //             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    //         }, 1000);
+    //     }
+    // };
+
+    const sendMessage = async () => {
         const message = userInput.value.trim();
+        console.log("user input", message); // display user input in console
         if (message !== '') {
             // Display user message
             const userMessageElement = document.createElement('div');
             userMessageElement.classList.add('user');
-            userMessageElement.textContent = `You: ${message}`;
+            userMessageElement.textContent = `${message}`;
             chatbotMessages.appendChild(userMessageElement);
             userInput.value = '';
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            console.log('[Debug] Displayed user message'); // Log user message
 
-            // Simulate bot response (replace with actual API call)
-            setTimeout(() => {
+            // Show loading indicator
+            const loadingElement = document.createElement('div');
+            loadingElement.classList.add('bot');
+            loadingElement.textContent = `...`;
+            chatbotMessages.appendChild(loadingElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            console.log('[Debug] Displayed loading indicator'); // Log loading indicator
+
+            // Make API call to backend
+            try {
+                console.log('[Debug] Sending POST request to backend...');
+                const response = await fetch('https://public-endpoint.onrender.com/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message }),
+                    mode: 'cors',
+                });
+
+                console.log('[Debug] Response status:', response.status); // Log response status
+                if (!response.ok) {
+                    throw new Error(`Server responded with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('[Debug] Response JSON:', data); // Log response JSON
+                const botReply = data.text || 'Sorry, I could not process your request.';
+
+                chatbotMessages.removeChild(loadingElement);
                 const botMessageElement = document.createElement('div');
                 botMessageElement.classList.add('bot');
-                botMessageElement.textContent = `Serenity: I'm here to help! How can I assist you further?`;
+                botMessageElement.textContent = `Serenity: ${botReply}`;
                 chatbotMessages.appendChild(botMessageElement);
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }, 1000);
+                console.log('[Debug] Displayed bot reply');
+
+            } catch (error) {
+                console.error('Error:', error);
+                chatbotMessages.removeChild(loadingElement);
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('bot');
+                botMessageElement.textContent = `Serenity: Oops, something went wrong. Please try again.`;
+                chatbotMessages.appendChild(botMessageElement);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+        } else {
+            console.warn('[Warning] Empty message, ignoring send.');
         }
     };
 
